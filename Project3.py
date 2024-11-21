@@ -38,20 +38,23 @@ class Schedule():
 
     def assign_shifts(self):
         """Assign shifts based on caregiver availability and hours."""
-        num_days = calendar.monthrange(self.year, self.month)[1] 
-
+        num_days = calendar.monthrange(self.year, self.month)[1]  # Number of days in the month
+        
         for day in range(1, num_days + 1):
-            for shift in ["AM", "PM"]:
-                # Find caregivers who are available
+            for shift in ["morning", "afternoon"]:
+                # Find caregivers who are available and prioritize those with 'preferred' status
                 available_caregivers = [
-                    caregiver for caregiver in self.caregivers if caregiver.availability == "available"
+                    caregiver for caregiver in self.caregivers if caregiver.availability[shift] in ["preferred", "available"]
                 ]
-                # Assign the first available caregiver (you can enhance this logic)
+                
+                # Select a caregiver based on preference (first 'preferred', then 'available')
+                available_caregivers.sort(key=lambda x: x.availability[shift] == "preferred", reverse=True)
+                
                 if available_caregivers:
-                    selected_caregiver = available_caregivers[0]  # Simple selection
+                    selected_caregiver = available_caregivers[0]
                     self.schedule[day][shift] = selected_caregiver.name
-                    # Decrease their hours to simulate working the shift
-                    selected_caregiver.hours -= 6
+                    selected_caregiver.hours -= 6  # Deduct 6 hours after assigning a shift
+
 
     def display_schedule(self):
         """Print the schedule."""
