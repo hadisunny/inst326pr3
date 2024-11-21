@@ -29,13 +29,13 @@ caregivers = [ Caregiver("Sara", "510-678-7756","sara@gmail.com", 20,36 ),
 
 
 
-class Schedule():
+class Schedule:
     def __init__(self, year, month, caregivers):
         self.year = year
         self.month = month
         self.caregivers = caregivers  
-        self.schedule = defaultdict(dict) 
-
+        self.schedule = defaultdict(dict)  # Holds the schedule for each day
+    
     def assign_shifts(self):
         """Assign shifts based on caregiver availability and hours."""
         num_days = calendar.monthrange(self.year, self.month)[1]  # Number of days in the month
@@ -47,14 +47,15 @@ class Schedule():
                     caregiver for caregiver in self.caregivers if caregiver.availability[shift] in ["preferred", "available"]
                 ]
                 
-                # Select a caregiver based on preference (first 'preferred', then 'available')
+                # Sort caregivers by preference (those who are 'preferred' come first)
                 available_caregivers.sort(key=lambda x: x.availability[shift] == "preferred", reverse=True)
                 
                 if available_caregivers:
+                    # Select the first available caregiver (highest priority)
                     selected_caregiver = available_caregivers[0]
                     self.schedule[day][shift] = selected_caregiver.name
+                    # Deduct 6 hours for the shift assigned
                     selected_caregiver.hours -= 6  # Deduct 6 hours after assigning a shift
-
 
     def display_schedule(self):
         """Print the schedule."""
@@ -68,10 +69,12 @@ class Schedule():
         """Generate an HTML calendar with assigned shifts."""
         cal = calendar.HTMLCalendar()
         html_calendar = cal.formatmonth(self.year, self.month)
+        
+        # Add the shift assignments to the HTML calendar
         for day, shifts in self.schedule.items():
             for shift, caregiver in shifts.items():
                 html_calendar = html_calendar.replace(
                     f">{day}<", 
-                    f">{day}<br>{shift}: {caregiver}<br>"
+                    f">{day}<br>{shift.capitalize()}: {caregiver}<br>"
                 )
         return html_calendar
