@@ -25,7 +25,3 @@ caregivers = [ Caregiver("Sara", "510-678-7756","sara@gmail.com", 20,36 ),
     #family members, unpaid 
         Caregiver("Sara", "510-678-7756","sara@gmail.com", 0,48 ),
         Caregiver("Liz", "510-688-7566","liz@gmail.com", 0,48 )]
-
-
-class Schedule:
-    #make caregiver objects 
