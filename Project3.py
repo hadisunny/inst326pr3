@@ -49,21 +49,6 @@ class Caregiver:
         return self.availability
 
 
-    # def availability(self, Caregiver, shift, status):
-    #     self.shift = {"morning": "7AM-1PM", "afternoon": "1PM-7PM"}
-    #     self.status = ["preferred", "available", "unavailable"]
-        
-    #     # Get availability for the morning shift
-    #     morning_shift = input("Morning shift (7:00AM - 1:00PM): Enter 'preferred', 'available', or 'unavailable': ").lower()
-    #     if morning_shift in status:
-    #         return self.availability
-        
-    #     # Get availability for the afternoon shift
-    #     afternoon_shift = input("Afternoon shift (1:00PM - 7:00PM): Enter 'preferred', 'available', or 'unavailable': ").lower()
-    #     if afternoon_shift in status:
-    #         print(status)
-
-
 class Schedule(Caregiver):
     #make caregiver objects 
     caregivers = [
