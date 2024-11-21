@@ -25,12 +25,12 @@ caregivers = [ Caregiver("Sara", "510-678-7756","sara@gmail.com", 20,36 ),
         Caregiver("Stephen", "510-248-8421","stephen@gmail.com",20, 36 ),
 
     #family members, unpaid 
-        Caregiver("Sara", "510-678-7756","sara@gmail.com", 0,48 ),
+        Caregiver("Alison", "510-678-7756","sara@gmail.com", 0,48 ),
         Caregiver("Liz", "510-688-7566","liz@gmail.com", 0,48 )]
 
 
 
-class Schedule:
+class Schedule():
     def __init__(self, year, month, caregivers):
         self.year = year
         self.month = month
