@@ -10,7 +10,6 @@ class Caregiver:
         self.email = email 
         self.pay_rate = pay_rate
         self.hours = hours 
-        self.availability = "available" #since this is the default 
     
     def weekly_pay(self):
         pay =  self.hours * self.pay_rate
