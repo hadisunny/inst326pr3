@@ -115,8 +115,6 @@ class Schedule:
                     f">{day}<br>{shift.capitalize()}: {caregiver}<br>"
                 )
         return html_calendar
-        self.availability = "available" #since this is the default 
-
-    #Availability
+    
     
 
