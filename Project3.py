@@ -13,7 +13,7 @@ class Caregiver:
     #Availability
     def availability(self):
         
-        #availabity for both shifts
+        #default availabity for both shifts
         self.availability = {
             "morning": "available",
             "afternoon": "available"
@@ -31,8 +31,8 @@ class Caregiver:
         #update availability for each shift
         for shift, time in shifts.items():
             while True:
-                print(f"\n{shift.capitalize()} Shift ({time})")
-                status = input(f"Enter availability for {shift} shift ('preferred', 'available', or 'unavailable'): ").lower()
+                print(f"\n{shift} Shift ({time})")
+                status = input(f"Enter availability for {shift} shift ('preferred', 'available', or 'unavailable'): ").lower() #take input
                 
                 if status in valid_status:
                     #update availability dictionary
@@ -44,7 +44,7 @@ class Caregiver:
         #display updated availability
         print("\nUpdated Availability:")
         for shift, status in self.availability.items():
-            print(f"{shift.capitalize()} Shift: {status}")
+            print(f"{shift} Shift: {status}")
         
         return self.availability
 
