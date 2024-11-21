@@ -1,5 +1,7 @@
 #project 3
 # make change
+import calendar
+from collections import defaultdict
 
 class Caregiver: 
     def __init__(self, name, phone, email,pay_rate, hours):
@@ -27,8 +29,6 @@ caregivers = [ Caregiver("Sara", "510-678-7756","sara@gmail.com", 20,36 ),
         Caregiver("Liz", "510-688-7566","liz@gmail.com", 0,48 )]
 
 
-import calendar
-from collections import defaultdict
 
 class Schedule:
     def __init__(self, year, month, caregivers):
