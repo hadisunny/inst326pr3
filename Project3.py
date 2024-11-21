@@ -78,3 +78,43 @@ class Schedule:
                     f">{day}<br>{shift.capitalize()}: {caregiver}<br>"
                 )
         return html_calendar
+        self.availability = "available" #since this is the default 
+
+    #Availability
+    def availability(self):
+        
+        #default availabity for both shifts
+        self.availability = {
+            "morning": "available",
+            "afternoon": "available"
+        }
+        
+        #predefined shifts and status options
+        shifts = {
+            "morning": "7AM-1PM",
+            "afternoon": "1PM-7PM"
+        }
+        valid_status = ["preferred", "available", "unavailable"]
+
+        print(f"\nSetting availability for {self.name}")
+
+        #update availability for each shift
+        for shift, time in shifts.items():
+            while True:
+                print(f"\n{shift} Shift ({time})")
+                status = input(f"Enter availability for {shift} shift ('preferred', 'available', or 'unavailable'): ").lower() #take input
+                
+                if status in valid_status:
+                    #update availability dictionary
+                    self.availability[shift] = status
+                    break
+                else:
+                    print("Invalid input. Please enter 'preferred', 'available', or 'unavailable'.")
+
+        #display updated availability
+        print("\nUpdated Availability:")
+        for shift, status in self.availability.items():
+            print(f"{shift} Shift: {status}")
+        
+        return self.availability
+
