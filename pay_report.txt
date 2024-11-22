@@ -1,0 +1,108 @@
+0Sara: $-6480.00
+Total Weekly Pay: $-6480.00
+Total Monthly Pay: $-6480.00
+0Sara: $-6480.00
+Total Weekly Pay: $-6480.00
+Total Monthly Pay: $-6480.00
+Brian: $960.00
+Total Weekly Pay: $-5520.00
+Total Monthly Pay: $-5520.00
+0Sara: $-6480.00
+Total Weekly Pay: $-6480.00
+Total Monthly Pay: $-6480.00
+Brian: $960.00
+Total Weekly Pay: $-5520.00
+Total Monthly Pay: $-5520.00
+Hana: $720.00
+Total Weekly Pay: $-4800.00
+Total Monthly Pay: $-4800.00
+0Sara: $-6480.00
+Total Weekly Pay: $-6480.00
+Total Monthly Pay: $-6480.00
+Brian: $960.00
+Total Weekly Pay: $-5520.00
+Total Monthly Pay: $-5520.00
+Hana: $720.00
+Total Weekly Pay: $-4800.00
+Total Monthly Pay: $-4800.00
+John: $720.00
+Total Weekly Pay: $-4080.00
+Total Monthly Pay: $-4080.00
+0Sara: $-6480.00
+Total Weekly Pay: $-6480.00
+Total Monthly Pay: $-6480.00
+Brian: $960.00
+Total Weekly Pay: $-5520.00
+Total Monthly Pay: $-5520.00
+Hana: $720.00
+Total Weekly Pay: $-4800.00
+Total Monthly Pay: $-4800.00
+John: $720.00
+Total Weekly Pay: $-4080.00
+Total Monthly Pay: $-4080.00
+Sally: $720.00
+Total Weekly Pay: $-3360.00
+Total Monthly Pay: $-3360.00
+0Sara: $-6480.00
+Total Weekly Pay: $-6480.00
+Total Monthly Pay: $-6480.00
+Brian: $960.00
+Total Weekly Pay: $-5520.00
+Total Monthly Pay: $-5520.00
+Hana: $720.00
+Total Weekly Pay: $-4800.00
+Total Monthly Pay: $-4800.00
+John: $720.00
+Total Weekly Pay: $-4080.00
+Total Monthly Pay: $-4080.00
+Sally: $720.00
+Total Weekly Pay: $-3360.00
+Total Monthly Pay: $-3360.00
+Stephen: $720.00
+Total Weekly Pay: $-2640.00
+Total Monthly Pay: $-2640.00
+0Sara: $-6480.00
+Total Weekly Pay: $-6480.00
+Total Monthly Pay: $-6480.00
+Brian: $960.00
+Total Weekly Pay: $-5520.00
+Total Monthly Pay: $-5520.00
+Hana: $720.00
+Total Weekly Pay: $-4800.00
+Total Monthly Pay: $-4800.00
+John: $720.00
+Total Weekly Pay: $-4080.00
+Total Monthly Pay: $-4080.00
+Sally: $720.00
+Total Weekly Pay: $-3360.00
+Total Monthly Pay: $-3360.00
+Stephen: $720.00
+Total Weekly Pay: $-2640.00
+Total Monthly Pay: $-2640.00
+Alison: $0.00
+Total Weekly Pay: $-2640.00
+Total Monthly Pay: $-2640.00
+0Sara: $-6480.00
+Total Weekly Pay: $-6480.00
+Total Monthly Pay: $-6480.00
+Brian: $960.00
+Total Weekly Pay: $-5520.00
+Total Monthly Pay: $-5520.00
+Hana: $720.00
+Total Weekly Pay: $-4800.00
+Total Monthly Pay: $-4800.00
+John: $720.00
+Total Weekly Pay: $-4080.00
+Total Monthly Pay: $-4080.00
+Sally: $720.00
+Total Weekly Pay: $-3360.00
+Total Monthly Pay: $-3360.00
+Stephen: $720.00
+Total Weekly Pay: $-2640.00
+Total Monthly Pay: $-2640.00
+Alison: $0.00
+Total Weekly Pay: $-2640.00
+Total Monthly Pay: $-2640.00
+Liz: $0.00
+Total Weekly Pay: $-2640.00
+Total Monthly Pay: $-2640.00

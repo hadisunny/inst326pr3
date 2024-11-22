@@ -9,26 +9,23 @@ class Caregiver:
         self.phone = phone
         self.email = email 
         self.pay_rate = pay_rate
-        self.hours = hours 
+        self.hours = hours
+        self.availability = {
+            "morning": "available",
+            "afternoon": "available"} #default values 
     
     def weekly_pay(self):
         pay =  self.hours * self.pay_rate
         return pay
     
-    def availability(self):
-        
-        #default availabity for both shifts
-        self.availability = {
-            "morning": "available",
-            "afternoon": "available"
-        }
+    def avail(self):
         
         #predefined shifts and status options
         shifts = {
             "morning": "7AM-1PM",
             "afternoon": "1PM-7PM"
         }
-        valid_status = ["preferred", "available", "unavailable"]
+        avail_status = ["preferred", "available", "unavailable"]
 
         print(f"\nSetting availability for {self.name}")
 
@@ -38,7 +35,7 @@ class Caregiver:
                 print(f"\n{shift} Shift ({time})")
                 status = input(f"Enter availability for {shift} shift ('preferred', 'available', or 'unavailable'): ").lower() #take input
                 
-                if status in valid_status:
+                if status in avail_status:
                     #update availability dictionary
                     self.availability[shift] = status
                     break
@@ -49,10 +46,8 @@ class Caregiver:
         print("\nUpdated Availability:")
         for shift, status in self.availability.items():
             print(f"{shift} Shift: {status}")
-        
-        return self.availability
 
-
+#create objects 
 caregivers = [ Caregiver("Sara", "510-678-7756","sara@gmail.com", 20,36 ),
         Caregiver("Brian", "510-568-7906","brian@gmail.com",20, 48 ),
         Caregiver("Hana", "510-234-6700","hana@gmail.com",20, 36 ),
@@ -79,42 +74,95 @@ class Schedule:
         
         for day in range(1, num_days + 1):
             for shift in ["morning", "afternoon"]:
-                # Find caregivers who are available and prioritize those with 'preferred' status
+                # Find caregivers who are available, prioritize preferred
                 available_caregivers = [
-                    caregiver for caregiver in self.caregivers if caregiver.availability[shift] in ["preferred", "available"]
+                caregiver for caregiver in self.caregivers if caregiver.availability[shift] in ["preferred", "available"]
                 ]
-                
-                # Sort caregivers by preference (those who are 'preferred' come first)
-                available_caregivers.sort(key=lambda x: x.availability[shift] == "preferred", reverse=True)
-                
-                if available_caregivers:
+                #available_caregivers.sort(key=lambda x: x.availability[shift] == "preferred", reverse=True)
+                preferred_caregivers = [caregiver for caregiver in available_caregivers if caregiver.availability[shift] == "preferred"]
+                selected = preferred_caregivers[0] if preferred_caregivers else (available_caregivers[0] if available_caregivers else None)
+
+
+                if selected:
                     # Select the first available caregiver (highest priority)
-                    selected_caregiver = available_caregivers[0]
-                    self.schedule[day][shift] = selected_caregiver.name
-                    # Deduct 6 hours for the shift assigned
-                    selected_caregiver.hours -= 6  # Deduct 6 hours after assigning a shift
+                    #selected = available_caregivers[0]
+                    self.schedule[day][shift] = selected.name
+                    selected.hours -= 6  # Deduct 6 hours after assigning a shift
 
-    def display_schedule(self):
-        """Print the schedule."""
-        for day, shifts in self.schedule.items():
-            print(f"Day {day}:")
-            for shift, caregiver in shifts.items():
-                print(f"  {shift}: {caregiver}")
-        print()
+    
+    def make_calendar(self): #used the html example given
+        """Generate and save the schedule as an HTML file."""
+        html_schedule = f"""
+        <html>
+        <head>
+            <title>Work Schedule for {calendar.month_name[self.month]} {self.year}</title>
+            <style>
+                table {{
+                    border-collapse: collapse;
+                    width: 100%;
+                    margin: 20px 0;
+                }}
+                th, td {{
+                    border: 1px solid black;
+                    padding: 10px;
+                    text-align: center;
+                }}
+                th {{
+                    background-color: #f2f2f2;
+                }}
+                td {{
+                    height: 100px;
+                    vertical-align: top;
+                }}
+            </style>
+        </head>
+        <body>
+            <h1>Work Schedule for {calendar.month_name[self.month]} {self.year}</h1>
+            <table>
+                <tr>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                    <th>Sun</th>
+                </tr>
+        """
 
-    def generate_html_calendar(self):
-        """Generate an HTML calendar with assigned shifts."""
-        cal = calendar.HTMLCalendar()
-        html_calendar = cal.formatmonth(self.year, self.month)
-        
-        # Add the shift assignments to the HTML calendar
-        for day, shifts in self.schedule.items():
-            for shift, caregiver in shifts.items():
-                html_calendar = html_calendar.replace(
-                    f">{day}<", 
-                    f">{day}<br>{shift.capitalize()}: {caregiver}<br>"
-                )
-        return html_calendar
+        #Get the first weekday of the month and the total days
+        first_weekday, num_days = calendar.monthrange(self.year, self.month)
+
+        # Fill in the days of the month
+        current_day = 1
+        for week in range((num_days + first_weekday) // 7 + 1):
+            html_schedule += "<tr>"
+            for day in range(7):
+                if (week == 0 and day < first_weekday) or current_day > num_days:
+                    html_schedule += "<td></td>"  # Empty cell for days outside the month
+                else:
+                    # Add the day and the assigned shifts
+                    shifts_for_day = self.schedule.get(current_day, {})
+                    morning_shift = shifts_for_day.get("morning", "N/A")
+                    afternoon_shift = shifts_for_day.get("afternoon", "N/A")
+
+                    html_schedule += f"<td>{current_day}<br><b>AM:</b> {morning_shift}<br><b>PM:</b> {afternoon_shift}</td>"
+                    current_day += 1
+            html_schedule += "</tr>"
+
+        #close html 
+        html_schedule += """
+            </table>
+        </body>
+        </html>
+        """
+
+        #write to file 
+        with open(f"work_schedule_{self.year}_{self.month}.html", "w") as file:
+            file.write(html_schedule)
+
+        print(f"HTML work schedule for {calendar.month_name[self.month]} {self.year} generated successfully!")
+
     
     def pay_report(self):
         #initializing  
@@ -133,3 +181,14 @@ class Schedule:
     
     
 
+#set avail
+for caregiver in caregivers:
+    caregiver.avail()
+
+#display schedule, pay report 
+year = 2024
+month = 11
+schedule = Schedule(year, month, caregivers)
+schedule.assign_shifts()
+schedule.make_calendar()
+schedule.pay_report()
