@@ -78,7 +78,7 @@ class Schedule:
                 available_caregivers = [
                 caregiver for caregiver in self.caregivers if caregiver.availability[shift] in ["preferred", "available"]
                 ]
-                #available_caregivers.sort(key=lambda x: x.availability[shift] == "preferred", reverse=True)
+                
                 preferred_caregivers = [caregiver for caregiver in available_caregivers if caregiver.availability[shift] == "preferred"]
                 selected = preferred_caregivers[0] if preferred_caregivers else (available_caregivers[0] if available_caregivers else None)
 
@@ -133,15 +133,15 @@ class Schedule:
         #Get the first weekday of the month and the total days
         first_weekday, num_days = calendar.monthrange(self.year, self.month)
 
-        # Fill in the days of the month
+        #fill in days of the month
         current_day = 1
         for week in range((num_days + first_weekday) // 7 + 1):
             html_schedule += "<tr>"
             for day in range(7):
                 if (week == 0 and day < first_weekday) or current_day > num_days:
-                    html_schedule += "<td></td>"  # Empty cell for days outside the month
+                    html_schedule += "<td></td>"  #Empty cell for days outside the month
                 else:
-                    # Add the day and the assigned shifts
+                    #add the day and the assigned shifts
                     shifts_for_day = self.schedule.get(current_day, {})
                     morning_shift = shifts_for_day.get("morning", "N/A")
                     afternoon_shift = shifts_for_day.get("afternoon", "N/A")
@@ -178,6 +178,7 @@ class Schedule:
                 report += f"Total Weekly Pay: ${total_weekly_pay:.2f}\n"
                 report += f"Total Monthly Pay: ${total_monthly_pay:.2f}\n"
                 f.write(report)
+        print("text file created")
     
     
 
