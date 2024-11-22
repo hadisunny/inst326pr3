@@ -1,3 +1,4 @@
+#project 3
 import calendar
 from collections import defaultdict
 
@@ -10,8 +11,8 @@ class Caregiver:
         self.pay_rate = pay_rate
         self.hours = hours
         self.availability = {
-            "Morning": "Available",
-            "Afternoon": "Available"  # default values
+            "morning": "available",
+            "afternoon": "available"  # default values
         }
     
     def weekly_pay(self):
@@ -22,10 +23,10 @@ class Caregiver:
     def avail(self):
         # Predefined shifts and status options
         shifts = {
-            "Morning": "7AM-1PM",
-            "Afternoon": "1PM-7PM"
+            "morning": "7AM-1PM",
+            "afternoon": "1PM-7PM"
         }
-        avail_status = ["Preferred", "Available", "Unavailable"]
+        avail_status = ["preferred", "available", "unavailable"]
 
         print(f"\nSetting availability for {self.name}")
 
@@ -69,8 +70,8 @@ class Schedule:
         self.caregivers = caregivers  
         self.schedule = defaultdict(dict)  # Holds the schedule for each day
     
+    #Assign shifts based on caregiver availability and hours.
     def assign_shifts(self):
-        """Assign shifts based on caregiver availability and hours."""
         num_days = calendar.monthrange(self.year, self.month)[1]  # Number of days in the month
         
         for day in range(1, num_days + 1):
@@ -88,8 +89,8 @@ class Schedule:
                     self.schedule[day][shift] = selected.name
                     selected.hours -= 6  # Deduct 6 hours after assigning a shift
     
+    #Generate and save the schedule as an HTML file.
     def make_calendar(self): 
-        """Generate and save the schedule as an HTML file."""
         html_schedule = f"""
         <html>
         <head>
@@ -161,8 +162,8 @@ class Schedule:
 
         print(f"HTML work schedule for {calendar.month_name[self.month]} {self.year} generated successfully!")
     
+    #Generate a pay report as a text file.
     def pay_report(self):
-        """Generate a pay report as a text file."""
         total_weekly_pay = 0 
         total_monthly_pay = 0
         report = "" 
