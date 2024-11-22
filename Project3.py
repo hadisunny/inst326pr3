@@ -116,5 +116,20 @@ class Schedule:
                 )
         return html_calendar
     
+    def pay_report(self):
+        #initializing  
+        total_weekly_pay= 0 
+        total_monthly_pay=  0
+        report= "0" 
+        with open("pay_report.txt", "w") as f:
+            for caregiver in self.caregivers:
+                weekly_pay = caregiver.weekly_pay()
+                total_weekly_pay += weekly_pay
+                total_monthly_pay += weekly_pay
+                report += f"{caregiver.name}: ${weekly_pay:.2f}\n" #rounds to 2 decimals since its money 
+                report += f"Total Weekly Pay: ${total_weekly_pay:.2f}\n"
+                report += f"Total Monthly Pay: ${total_monthly_pay:.2f}\n"
+                f.write(report)
+    
     
 
